@@ -66,5 +66,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-\Delfinen\src\delfinen\Util\DBConfig.java
+Delfinen\src\delfinen\Util\DBConfig.java
+Delfinen\nbproject\private\config.propeties
 # End of https://www.gitignore.io/api/macos,windows,netbeans
