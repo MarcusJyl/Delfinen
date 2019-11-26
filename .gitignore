@@ -38,6 +38,7 @@ build/
 nbbuild/
 dist/
 nbdist/
+src/Util/DBConfig.java
 .nb-gradle/
 
 ### Windows ###
