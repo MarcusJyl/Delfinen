@@ -7,8 +7,7 @@ import java.sql.Statement;
 
 public class LavMedlem {
 
-    public static void main(String[] args) {
-
+    public static void insert() {
         Connection MyConnector = null;
         Statement statement = null;
         try {
