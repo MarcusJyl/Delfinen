@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import delfinen.Util.DBConfig;
 
+
 public class DBConnector {
 
     public static Connection getConnector() throws SQLException, ClassNotFoundException {
