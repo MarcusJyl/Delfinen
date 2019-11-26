@@ -4,6 +4,6 @@ package delfinen.Util;
 
 public class DBConfig {
     static String username = "root";
-    static String password = "Dug83cmn";
+    static String password = "Kongdane4114956";
     
 }
