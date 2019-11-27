@@ -1,6 +1,7 @@
 package delfinen.View;
 
 public class MainMenuUI {
+    
     public static void showMainMenu() {
         System.out.println("************************************************");
         System.out.println("Velkommen til Delfinen svømmeklub");
