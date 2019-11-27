@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
 public class DBMedlem {
 
     public static void insert(String navn, String fødselsdag, String holdtype) {
@@ -25,7 +26,7 @@ public class DBMedlem {
             System.out.println(ex);
         }
     }
-    
+
     public static void skiftHoldtype(String holdtype, int id) {
         Connection MyConnector = null;
         Statement statement = null;
@@ -44,5 +45,5 @@ public class DBMedlem {
             System.out.println(ex);
         }
     }
-    
+
 }

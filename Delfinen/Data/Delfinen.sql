@@ -1,7 +1,7 @@
-drop database if exists Delfinen;
-CREATE DATABASE Delfinen;
+drop database if exists delfinen;
+CREATE DATABASE delfinen;
 
-use Delfinen;
+use delfinen;
 
 CREATE TABLE `medlemmer` (
    `medlems_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -10,3 +10,8 @@ CREATE TABLE `medlemmer` (
    `medlems_holdtype` varchar(255) NOT NULL,
    PRIMARY KEY (`medlems_id`)
  ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+ 
+ CREATE TABLE `medlemmers_dicipliner` (
+   `medlems_id` int(11) NOT NULL,
+   `diciplin` varchar(255) not null
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
