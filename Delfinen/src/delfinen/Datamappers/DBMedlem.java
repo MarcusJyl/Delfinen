@@ -2,9 +2,11 @@ package delfinen.Datamappers;
 
 import delfinen.Util.DBConnector;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBMedlem {
 
@@ -44,6 +46,34 @@ public class DBMedlem {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
+    }
+
+    public static int størsteMedlemsId() {
+        int retVal = 0;
+        Connection MyConnector = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "select MAX(medlems_id) from medlemmer;";
+            statement = MyConnector.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                retVal = resultSet.getInt("MAX(medlems_id)");
+            }
+
+            //lukker
+            resultSet.close();;
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return retVal;
     }
 
 }

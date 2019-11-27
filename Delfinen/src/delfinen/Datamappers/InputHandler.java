@@ -1,7 +1,5 @@
 package delfinen.Datamappers;
 
-import delfinen.Model.Medlem;
-
 public class InputHandler {
 
     public static void lavMedlem(String navn, String fødselsDato, int holdtype) {
