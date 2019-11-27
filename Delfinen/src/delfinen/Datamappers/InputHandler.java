@@ -1,5 +1,7 @@
 package delfinen.Datamappers;
 
+import java.util.Date;
+
 public class InputHandler {
 
     public static void lavMedlem(String navn, String fødselsDato, int holdtype, int status) {
@@ -17,6 +19,11 @@ public class InputHandler {
                 DBMedlem.insert(navn, fødselsDato, "Konkurrence", "aktiv");
             }
         }
+    }
+    
+    public static void getDouble(String føds, int status) {
+        Date date = new Date();
+        System.out.println(date);
     }
 
 }
