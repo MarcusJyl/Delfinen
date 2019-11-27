@@ -8,13 +8,13 @@ import java.sql.Statement;
 
 public class DBMedlem {
 
-    public static void insert(String navn, String fødselsdag, String holdtype, String status) {
+    public static void insert(String navn, String fødselsdag, String holdtype, String status, double kontingent) {
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "');";
+            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "',"+ kontingent +");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 

@@ -30,7 +30,6 @@ public class Controller {
                     getDiciplin(holdtype);
                     break;
                 case 2:
-                    InputHandler.getDouble("Test", 1);
                     break;
             }
         }
