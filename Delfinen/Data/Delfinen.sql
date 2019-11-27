@@ -8,6 +8,7 @@ CREATE TABLE `medlemmer` (
    `medlems_navn` varchar(255) NOT NULL,
    `medlems_alder` DATE NOT NULL,
    `medlems_holdtype` varchar(255) NOT NULL,
+   `medlems_status` varchar(255) NOT NULL,
    PRIMARY KEY (`medlems_id`)
  ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
  

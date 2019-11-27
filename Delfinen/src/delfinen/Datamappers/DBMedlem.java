@@ -5,18 +5,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DBMedlem {
 
-    public static void insert(String navn, String fødselsdag, String holdtype) {
+    public static void insert(String navn, String fødselsdag, String holdtype, String status) {
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "');";
+            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "');";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 

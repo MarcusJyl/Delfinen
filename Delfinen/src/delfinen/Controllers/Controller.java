@@ -23,11 +23,11 @@ public class Controller {
                 case 1:
                     String navn = getUserString("Indtast det nye medlems navn:");
                     String fødselsdato = getUserString("Indtast det nye medlems fødselsdato i følgende format: yyyy-mm-dd");
-                    int holdtype = getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2.Konkurrence");
-                    InputHandler.lavMedlem(navn, fødselsdato, holdtype);
+                    int status = getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv");
+                    int holdtype = getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence");
+                    InputHandler.lavMedlem(navn, fødselsdato, holdtype, status);
 
                     getDiciplin(holdtype);
-
                     break;
             }
         }
@@ -68,7 +68,6 @@ public class Controller {
                 if (in != dicipliner.size() - 1) {
                     DBDiciplin.insert(id, dicipliner.get(in));
                 }
-
                 dicipliner.remove(in);
             }
         }
