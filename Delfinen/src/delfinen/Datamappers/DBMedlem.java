@@ -14,7 +14,7 @@ public class DBMedlem {
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "',"+ kontingent +");";
+            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "'," + kontingent + "," + false + ");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 
