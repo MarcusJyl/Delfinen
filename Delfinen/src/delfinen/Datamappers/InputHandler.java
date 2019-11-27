@@ -1,5 +1,7 @@
 package delfinen.Datamappers;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 public class InputHandler {
@@ -21,9 +23,16 @@ public class InputHandler {
         }
     }
     
-    public static void getDouble(String føds, int status) {
-        Date date = new Date();
-        System.out.println(date);
-    }
-
+   public static int getAlder(String føds) {
+       String[] dato = føds.split("-");
+       int[] datoTal = new int[dato.length];
+       for (int i = 0; i < dato.length; i++) {
+           datoTal[i] = Integer.parseInt(dato[i]);
+       }
+       
+        LocalDate today = LocalDate.now();                         
+        LocalDate birthday = LocalDate.of(datoTal[0],datoTal[1], datoTal[2]); 
+        Period p = Period.between(birthday, today);
+       return p.getYears();
+   }
 }

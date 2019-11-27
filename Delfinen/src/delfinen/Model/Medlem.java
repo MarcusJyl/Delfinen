@@ -2,7 +2,7 @@
 package delfinen.Model;
 /*
 @author Marcus Jensen
-*/
+*/  
 public class Medlem {
 
     private int id;
