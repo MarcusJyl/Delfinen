@@ -20,10 +20,10 @@ CREATE TABLE medlemmer (
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
   CREATE TABLE træning (
-   trænings_id int(11) NOT NULL,
+   trænings_id int(11) NOT NULL AUTO_INCREMENT,
    træning_dato varchar(255) not null,
    senior_træning boolean not null,
-   konkurance_svømmer boolean not null,
+   konkurrence_svømmer boolean not null,
    PRIMARY KEY (trænings_id)
  ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
  
