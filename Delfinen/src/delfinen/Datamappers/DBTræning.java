@@ -24,3 +24,4 @@ public class DBTræning {
             System.out.println(ex);
         }
 }
+}
