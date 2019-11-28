@@ -33,20 +33,16 @@ public class Controller {
                     System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
                     break;
                 case 3:
-
-                    int form = getUserInteger("1. Stævne\n2. træning");
-
-                    if (form == 1) {
-                        
-                    } else if (form == 2) {
-
-                        
-                    }
-
+                    int træningsType = getUserInteger("1. Junior\n2. Senior");
+                    
                     break;
 
             }
         }
+    }
+    
+    public static void opretRes(){
+        Scanner input = new Scanner(System.in);
     }
 
     public static String getUserString(String tmp) {
