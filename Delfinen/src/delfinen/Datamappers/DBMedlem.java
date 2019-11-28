@@ -73,5 +73,33 @@ public class DBMedlem {
         }
         return retVal;
     }
+    
+    public static double getMedlemsKontingent(String navn, String dato) {
+        double retVal = 0;
+        Connection MyConnector = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "select medlems_kontingent from medlemmer where medlems_navn = '" + navn + "' and medlems_fødselsdato = '" + dato + "';";
+            statement = MyConnector.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                retVal = resultSet.getDouble("medlems_kontingent");
+            }
+
+            //lukker
+            resultSet.close();;
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return retVal;
+    }
 
 }

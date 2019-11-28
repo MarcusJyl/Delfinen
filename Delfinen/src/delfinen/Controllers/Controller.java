@@ -27,8 +27,9 @@ public class Controller {
                     break;
                 case 2:
                     String navn2 = getUserString("Indtast medlems navn:");
-                    String fødselsdato2 = getUserString("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
-
+                    String fødselsdato2 = getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
+                    
+                    System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
                     break;
             }
         }
@@ -58,7 +59,6 @@ public class Controller {
         retVal = input.nextLine();
         String[] dato = retVal.split("-");
         retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
-        System.out.println(retVal);
         return retVal;
     }
 
