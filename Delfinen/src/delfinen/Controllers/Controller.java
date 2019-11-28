@@ -9,33 +9,33 @@ import java.util.Scanner;
 
 public class Controller {
 
-    static Scanner input = new Scanner(System.in);
-
     public static void runMainMenu() {
 
         int svar = 0;
 
         while (svar != 9) {
-            MainMenuUI.showMainMenu();
-            svar = input.nextInt();
-            input.nextLine();
+            svar = getUserInteger(showMainMenu());
             switch (svar) {
                 case 1:
-                    String navn = getUserString("Indtast det nye medlems navn:");
-                    String fødselsdato = getUserString("Indtast det nye medlems fødselsdato i følgende format: yyyy-mm-dd");
-                    int status = getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv");
-                    int holdtype = getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence");
-                    InputHandler.lavMedlem(navn, fødselsdato, holdtype, status);
+                    String navn1 = getUserString("Indtast det nye medlems navn:");
+                    String fødselsdato1 = getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
+                    int status1 = getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv");
+                    int holdtype1 = getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence");
+                    InputHandler.lavMedlem(navn1, fødselsdato1, holdtype1, status1);
 
-                    getDiciplin(holdtype);
+                    getDiciplin(holdtype1);
                     break;
                 case 2:
+                    String navn2 = getUserString("Indtast medlems navn:");
+                    String fødselsdato2 = getUserString("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
+
                     break;
             }
         }
     }
 
     public static String getUserString(String tmp) {
+        Scanner input = new Scanner(System.in);
         String retVal = "";
         System.out.println(tmp);
         retVal = input.nextLine();
@@ -43,6 +43,7 @@ public class Controller {
     }
 
     public static int getUserInteger(String tmp) {
+        Scanner input = new Scanner(System.in);
         int retVal = 0;
         System.out.println(tmp);
         retVal = input.nextInt();
@@ -50,7 +51,19 @@ public class Controller {
         return retVal;
     }
 
+    public static String getFøds(String tekst) {
+        Scanner input = new Scanner(System.in);
+        String retVal = "";
+        System.out.println(tekst);
+        retVal = input.nextLine();
+        String[] dato = retVal.split("-");
+        retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
+        System.out.println(retVal);
+        return retVal;
+    }
+
     public static void getDiciplin(int holdtype) {
+        Scanner input = new Scanner(System.in);
         ArrayList<String> dicipliner = new ArrayList();
         dicipliner.add("Crawl");
         dicipliner.add("Brystsvømning");
@@ -73,5 +86,16 @@ public class Controller {
                 dicipliner.remove(in);
             }
         }
+    }
+
+    public static String showMainMenu() {
+        return "************************************************\n"
+                + "Velkommen til Delfinen svømmeklub\n"
+                + "Muligheder:\n"
+                + "1. Opret nyt medlem\n"
+                + "2. Se kontingent\n"
+                + "3. TBM\n"
+                + "4. TBM\n"
+                + "************************************************\n";
     }
 }
