@@ -2,6 +2,7 @@ package delfinen.Controllers;
 
 import delfinen.Datamappers.DBDiciplin;
 import delfinen.Datamappers.DBMedlem;
+import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.InputHandler;
 import delfinen.View.MainMenuUI;
 import java.util.ArrayList;
@@ -28,9 +29,22 @@ public class Controller {
                 case 2:
                     String navn2 = getUserString("Indtast medlems navn:");
                     String fødselsdato2 = getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
-                    
+
                     System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
                     break;
+                case 3:
+
+                    int form = getUserInteger("1. Stævne\n2. træning");
+
+                    if (form == 1) {
+                        
+                    } else if (form == 2) {
+
+                        
+                    }
+
+                    break;
+
             }
         }
     }
@@ -94,7 +108,7 @@ public class Controller {
                 + "Muligheder:\n"
                 + "1. Opret nyt medlem\n"
                 + "2. Se kontingent\n"
-                + "3. TBM\n"
+                + "3. Opret trænings resultater\n"
                 + "4. TBM\n"
                 + "************************************************\n";
     }
