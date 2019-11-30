@@ -3,8 +3,11 @@ package delfinen.Controllers;
 import delfinen.Datamappers.DBDiciplin;
 import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBResultat;
+import delfinen.Datamappers.DBTræning;
 import delfinen.Datamappers.InputHandler;
 import delfinen.View.MainMenuUI;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,21 +31,43 @@ public class Controller {
                     break;
                 case 2:
                     String navn2 = getUserString("Indtast medlems navn:");
-                    String fødselsdato2 = getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
+                    String fødselsdato2 = getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
 
                     System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
                     break;
                 case 3:
-                    int træningsType = getUserInteger("1. Junior\n2. Senior");
-                    
+                    String dato = getFøds("Trænings dato:\nSkriv 1 for i dag eller indtast dato i følgende format: dd-mm-yyyy");
+                    if (dato.equals("1")) {
+                        LocalDate date = LocalDate.now();
+                        dato = date.toString();
+                    }
+                    int træningsType = getUserInteger("Trænings type:\n1. Senior\n2. Junior");
+                    int træningsForm = getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion");
+
+                    DBTræning.insert(dato, checkBoolFrom1Or2(træningsType), checkBoolFrom1Or2(træningsForm));
+
+                    if (træningsForm == 1) {
+                        int opretRes = getUserInteger("Ønskes der at opret resultater for denne træning?\n1. Ja\n2. Nej");
+                        if (opretRes == 1) {
+                            System.out.println(DBTræning.getNyesteTræningsId());
+                            long y = 18;
+                            LocalDate date18 = LocalDate.now().minus(18, ChronoUnit.YEARS);
+                            System.out.println(date18);
+                        }
+                    }
+                    //String træningDato, boolean seniorTræning,boolean konkurrenceTræning
+
                     break;
 
             }
         }
     }
-    
-    public static void opretRes(){
-        Scanner input = new Scanner(System.in);
+
+    public static boolean checkBoolFrom1Or2(int tal) {
+        if (tal == 1) {
+            return true;
+        }
+        return false;
     }
 
     public static String getUserString(String tmp) {
@@ -67,8 +92,16 @@ public class Controller {
         String retVal = "";
         System.out.println(tekst);
         retVal = input.nextLine();
-        String[] dato = retVal.split("-");
-        retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
+        try {
+            String[] dato = retVal.split("-");
+            retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
+        } catch (Exception e) {
+            if (retVal.equals("1")) {
+                return retVal;
+            } else {
+                getFøds("Forkert format:\nIndtast medlems fødselsdato i følgende format: dd-mm-yyyy");
+            }
+        }
         return retVal;
     }
 
