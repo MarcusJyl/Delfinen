@@ -150,11 +150,11 @@ public class DBMedlem {
                 String dato = resultSet.getString("medlems_fødselsdato");
                 String[] datoArr = dato.split("-");
                 int[] datoTal = new int[datoArr.length];
-                
+
                 for (int i = 0; i < datoTal.length; i++) {
                     datoTal[i] = Integer.parseInt(datoArr[i]);
                 }
-                
+
                 LocalDate today = LocalDate.now();
                 LocalDate birthday = LocalDate.of(datoTal[0], datoTal[1], datoTal[2]);
                 Period p = Period.between(birthday, today);
