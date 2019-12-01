@@ -30,7 +30,7 @@ public class Controller {
                     int holdtype1 = scanner.getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence");
                     InputHandler.lavMedlem(navn1, fødselsdato1, holdtype1, status1);
 
-                    scanner.getDiciplin(holdtype1);
+                    scanner.insertDiciplin(holdtype1);
                     break;
                 case 2:
                     String navn2 = scanner.getUserString("Indtast medlems navn:");

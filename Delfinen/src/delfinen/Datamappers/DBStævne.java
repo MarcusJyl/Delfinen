@@ -5,15 +5,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DBStævne {
-    
-public static void insert(String stævne_navn, String dato) {
+public class DBStævne extends DBCalls {
+
+    public void insert(Object... val) {
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into stævne values (null,'" + stævne_navn + "','" + dato + ");";
+            String query = "insert into stævne values (null,'" + val[0] + "','" + val[1] + ");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 
@@ -24,5 +24,5 @@ public static void insert(String stævne_navn, String dato) {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
-}
+    }
 }

@@ -26,7 +26,7 @@ public class ScannerFunc {
     public DBDiciplin getDBD() {
         return DBD;
     }
-    
+
     public DBResultat getDBR() {
         return DBR;
     }
@@ -75,7 +75,7 @@ public class ScannerFunc {
         return retVal;
     }
 
-    public void getDiciplin(int holdtype) {
+    public void insertDiciplin(int holdtype) {
         ArrayList<String> dicipliner = new ArrayList();
         dicipliner.add("Crawl");
         dicipliner.add("Brystsvømning");
@@ -86,6 +86,9 @@ public class ScannerFunc {
         if (holdtype == 2) {
             int in = 0;
             while (in != dicipliner.size()) {
+                if (dicipliner.isEmpty()) {
+                    return;
+                }
                 for (int i = 0; i < dicipliner.size(); i++) {
                     System.out.println(i + ". " + dicipliner.get(i));
                 }
