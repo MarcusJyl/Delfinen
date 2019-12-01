@@ -1,5 +1,10 @@
 package delfinen.Util;
 
+import delfinen.Datamappers.DBDiciplin;
+import delfinen.Datamappers.DBMedlem;
+import delfinen.Datamappers.DBResultat;
+import delfinen.Datamappers.DBTræning;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,13 +12,36 @@ import java.util.Scanner;
  * @author marcg
  */
 public class ScannerFunc {
+
+    private Scanner input;
+    private DBDiciplin DBD = new DBDiciplin();
+    private DBResultat DBR = new DBResultat();
+    private DBMedlem DBM = new DBMedlem("medlems_id", "medlemmer");
+    private DBTræning DBT = new DBTræning("trænings_id", "træning");
+
+    public Scanner getInput() {
+        return input;
+    }
+
+    public DBDiciplin getDBD() {
+        return DBD;
+    }
     
-    Scanner input;
+    public DBResultat getDBR() {
+        return DBR;
+    }
+
+    public DBMedlem getDBM() {
+        return DBM;
+    }
+
+    public DBTræning getDBT() {
+        return DBT;
+    }
 
     public ScannerFunc() {
         this.input = new Scanner(System.in);
     }
-    
 
     public String getUserString(String tmp) {
         String retVal = "";
@@ -47,4 +75,28 @@ public class ScannerFunc {
         return retVal;
     }
 
+    public void getDiciplin(int holdtype) {
+        ArrayList<String> dicipliner = new ArrayList();
+        dicipliner.add("Crawl");
+        dicipliner.add("Brystsvømning");
+        dicipliner.add("Rygcrawl");
+        dicipliner.add("Butterfly");
+        dicipliner.add("For at lukke");
+
+        if (holdtype == 2) {
+            int in = 0;
+            while (in != dicipliner.size()) {
+                for (int i = 0; i < dicipliner.size(); i++) {
+                    System.out.println(i + ". " + dicipliner.get(i));
+                }
+                in = input.nextInt();
+                input.nextLine();
+                int id = DBM.størsteId();
+                if (in != dicipliner.size() - 1) {
+                    DBD.insert(id, dicipliner.get(in));
+                }
+                dicipliner.remove(in);
+            }
+        }
+    }
 }

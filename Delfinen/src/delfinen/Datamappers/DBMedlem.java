@@ -1,5 +1,6 @@
 package delfinen.Datamappers;
 
+import delfinen.Model.Medlem;
 import delfinen.Util.DBConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,15 +10,20 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-public class DBMedlem {
+public class DBMedlem extends DBCalls {
 
-    public static void insert(String navn, String fødselsdag, String holdtype, String status, double kontingent) {
+    public DBMedlem(String idName , String tableName) {
+        super(idName, tableName);
+    }
+
+    @Override
+    public void insert(Object... val) {
         Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "'," + kontingent + "," + false + ");";
+            String query = "insert into medlemmer values (null,'" + val[0] + "','" + val[1] + "','" + val[2] + "','" + val[3] + "'," + val[4] + "," + false + ");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 
@@ -29,6 +35,25 @@ public class DBMedlem {
             System.out.println(ex);
         }
     }
+
+//    public void insert(String navn, String fødselsdag, String holdtype, String status, double kontingent) {
+//        Connection MyConnector = null;
+//        Statement statement = null;
+//        try {
+//            MyConnector = DBConnector.getConnector();
+//
+//            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "'," + kontingent + "," + false + ");";
+//            statement = MyConnector.createStatement();
+//            statement.executeUpdate(query);
+//
+//            statement.close();
+//            MyConnector.close();
+//        } catch (SQLException ex) {
+//            System.out.println(ex);
+//        } catch (ClassNotFoundException ex) {
+//            System.out.println(ex);
+//        }
+//    }
 
     public static void skiftHoldtype(String holdtype, int id) {
         Connection MyConnector = null;
@@ -47,34 +72,6 @@ public class DBMedlem {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
-    }
-
-    public static int størsteMedlemsId() {
-        int retVal = 0;
-        Connection MyConnector = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            MyConnector = DBConnector.getConnector();
-            String query = "select MAX(medlems_id) from medlemmer;";
-            statement = MyConnector.createStatement();
-            resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                retVal = resultSet.getInt("MAX(medlems_id)");
-            }
-
-            //lukker
-            resultSet.close();;
-            statement.close();
-            MyConnector.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex);
-        }
-        return retVal;
     }
 
     public static double getMedlemsKontingent(String navn, String dato) {
@@ -133,8 +130,8 @@ public class DBMedlem {
         return retVal;
     }
 
-    public static ArrayList<Integer> getalder(int id) {
-        ArrayList<Integer> retVal = new ArrayList();
+    public ArrayList<Medlem> getWhereAlderUnderEllerOver(String alder) {
+        ArrayList<Medlem> retVal = new ArrayList();
 
         Connection MyConnector = null;
         Statement statement = null;
@@ -142,23 +139,26 @@ public class DBMedlem {
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "select medlems_fødselsdato from medlemmer;";
+            String query = "SELECT * FROM delfinen.medlemmer where medlems_fødselsdato " + alder + ";";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 
+            
+            //int id, String navn, String fødselsdato, String holdtype
             while (resultSet.next()) {
+                int id = resultSet.getInt("medlems_id");
+                String navn = resultSet.getString("medlems_navn");
                 String dato = resultSet.getString("medlems_fødselsdato");
+                String hold = resultSet.getString("medlems_holdtype");
+                
                 String[] datoArr = dato.split("-");
                 int[] datoTal = new int[datoArr.length];
-
                 for (int i = 0; i < datoTal.length; i++) {
                     datoTal[i] = Integer.parseInt(datoArr[i]);
                 }
-
-                LocalDate today = LocalDate.now();
-                LocalDate birthday = LocalDate.of(datoTal[0], datoTal[1], datoTal[2]);
-                Period p = Period.between(birthday, today);
-                retVal.add(p.getYears());
+                
+                Medlem tempMedlem = new Medlem(id, navn, dato, hold);
+                retVal.add(tempMedlem);
             }
 
             //lukker
@@ -172,5 +172,4 @@ public class DBMedlem {
         }
         return retVal;
     }
-
 }

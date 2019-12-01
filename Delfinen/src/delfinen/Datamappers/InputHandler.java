@@ -5,20 +5,21 @@ import java.time.Period;
 import java.util.Date;
 
 public class InputHandler {
-
+    
     public static void lavMedlem(String navn, String fødselsDato, int holdtype, int status) {
+        DBMedlem DBM = new DBMedlem("sdasda", "dasdasda");
         if (holdtype == 1) {
             if (status == 1) {
-                DBMedlem.insert(navn, fødselsDato, "motionist", "passiv", beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "motionist", "passiv", beregnKotingent(fødselsDato, status));
             } else {
-                DBMedlem.insert(navn, fødselsDato, "motionist", "aktiv",beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "motionist", "aktiv",beregnKotingent(fødselsDato, status));
             }
 
         } else if (holdtype == 2) {
             if (status == 1) {
-                DBMedlem.insert(navn, fødselsDato, "Konkurrence", "passiv", beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "Konkurrence", "passiv", beregnKotingent(fødselsDato, status));
             } else {
-                DBMedlem.insert(navn, fødselsDato, "Konkurrence", "aktiv", beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "Konkurrence", "aktiv", beregnKotingent(fødselsDato, status));
             }
         }
     }

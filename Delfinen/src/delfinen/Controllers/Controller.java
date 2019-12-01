@@ -5,6 +5,7 @@ import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Datamappers.InputHandler;
+import delfinen.Util.Cases;
 import delfinen.Util.ScannerFunc;
 import delfinen.View.MainMenuUI;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class Controller {
 
     public static void runMainMenu() {
         ScannerFunc scanner = new ScannerFunc();
+        Cases cases = new Cases(scanner);
         int svar = 0;
 
         while (svar != 9) {
@@ -28,7 +30,7 @@ public class Controller {
                     int holdtype1 = scanner.getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence");
                     InputHandler.lavMedlem(navn1, fødselsdato1, holdtype1, status1);
 
-                    getDiciplin(holdtype1);
+                    scanner.getDiciplin(holdtype1);
                     break;
                 case 2:
                     String navn2 = scanner.getUserString("Indtast medlems navn:");
@@ -37,25 +39,7 @@ public class Controller {
                     System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
                     break;
                 case 3:
-                    String dato = scanner.getFøds("Trænings dato:\nSkriv 1 for i dag eller indtast dato i følgende format: dd-mm-yyyy");
-                    if (dato.equals("1")) {
-                        LocalDate date = LocalDate.now();
-                        dato = date.toString();
-                    }
-                    int træningsType = scanner.getUserInteger("Trænings type:\n1. Senior\n2. Junior");
-                    int træningsForm = scanner.getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion");
-
-                    DBTræning.insert(dato, checkBoolFrom1Or2(træningsType), checkBoolFrom1Or2(træningsForm));
-
-                    if (træningsForm == 1) {
-                        int opretRes = scanner.getUserInteger("Ønskes der at opret resultater for denne træning?\n1. Ja\n2. Nej");
-                        if (opretRes == 1) {
-                            System.out.println(DBTræning.getNyesteTræningsId());
-                            long y = 18;
-                            LocalDate date18 = LocalDate.now().minus(18, ChronoUnit.YEARS);
-                            System.out.println(date18);
-                        }
-                    }
+                    cases.case3();
 
                     break;
 
@@ -68,34 +52,6 @@ public class Controller {
             return true;
         }
         return false;
-    }
-
-    
-
-    public static void getDiciplin(int holdtype) {
-        Scanner input = new Scanner(System.in);
-        ArrayList<String> dicipliner = new ArrayList();
-        dicipliner.add("Crawl");
-        dicipliner.add("Brystsvømning");
-        dicipliner.add("Rygcrawl");
-        dicipliner.add("Butterfly");
-        dicipliner.add("For at lukke");
-
-        if (holdtype == 2) {
-            int in = 0;
-            while (in != dicipliner.size()) {
-                for (int i = 0; i < dicipliner.size(); i++) {
-                    System.out.println(i + ". " + dicipliner.get(i));
-                }
-                in = input.nextInt();
-                input.nextLine();
-                int id = DBMedlem.størsteMedlemsId();
-                if (in != dicipliner.size() - 1) {
-                    DBDiciplin.insert(id, dicipliner.get(in));
-                }
-                dicipliner.remove(in);
-            }
-        }
     }
 
     public static String showMainMenu() {
