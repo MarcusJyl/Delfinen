@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/ScannerFunc.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/Cases.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBDiciplin.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBResultat.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlem.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBTræning.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/DBConnector.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Model/Medlem.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBCalls.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/DBConfig.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/InputHandler.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Controllers/Controller.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

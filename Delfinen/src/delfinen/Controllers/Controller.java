@@ -40,9 +40,10 @@ public class Controller {
                     break;
                 case 3:
                     cases.case3();
-
                     break;
-
+                case 4:
+                    cases.case4();
+                    break;
             }
         }
     }
@@ -61,7 +62,7 @@ public class Controller {
                 + "1. Opret nyt medlem\n"
                 + "2. Se kontingent\n"
                 + "3. Opret trænings resultater\n"
-                + "4. TBM\n"
+                + "4. Se top svømmer\n"
                 + "************************************************\n";
     }
 }

@@ -6,6 +6,7 @@ import delfinen.Model.Medlem;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Cases {
 
@@ -60,8 +61,10 @@ public class Cases {
 
                         for (Medlem medlem : medlemmer) {
                             if (medlem.getDicipliner().contains(dicipliner.get(in))) {
-                                String tid = scannerFunc.getUserString("Intast Tid i format mm:ss:\nFor " + medlem.getNavn());
-                                scannerFunc.getDBR().insert(lastTræningsId, medlem.getId(), tid, dicipliner.get(in));
+                                String tid = scannerFunc.getUserString("Intast Tid i format mm:ss eller skriv stop hvis medlemet ikke blevt tidstaget i denne diciplin\nFor " + medlem.getNavn());
+                                if (!tid.contains("stop")) {
+                                    scannerFunc.getDBR().insert(lastTræningsId, medlem.getId(), tid, dicipliner.get(in));
+                                }
                             }
                         }
                         dicipliner.remove(in);
@@ -70,5 +73,41 @@ public class Cases {
                 }
             }
         }
+    }
+
+    public static void case4() {
+        ScannerFunc scannerFunc = new ScannerFunc();
+
+        ArrayList<String> list = new ArrayList();
+        String dici = "";
+        while (!dici.contains("lukke")) {
+            dici = vælgDiciplin(list);
+            String[][] arr = scannerFunc.getDBR().select(dici);
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println(" medlemmets navn: " + arr[i][1] + "| Tid: " + arr[i][0]);
+            }
+        }
+    }
+
+    public static String vælgDiciplin(ArrayList<String> list) {
+        Scanner input = new Scanner(System.in);
+        ArrayList<String> dicipliner = new ArrayList();
+        dicipliner.add("Crawl");
+        dicipliner.add("Brystsvømning");
+        dicipliner.add("Rygcrawl");
+        dicipliner.add("Butterfly");
+        dicipliner.add("For at lukke");
+        for (String dici : list) {
+            dicipliner.remove(dici);
+        }
+        for (int i = 0; i < dicipliner.size(); i++) {
+            System.out.println(i + ". " + dicipliner.get(i));
+        }
+
+        int in = input.nextInt();
+        input.nextLine();
+
+        list.add(dicipliner.get(in));
+        return dicipliner.get(in);
     }
 }
