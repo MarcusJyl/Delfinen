@@ -82,12 +82,10 @@ public class Cases {
         String dici = "";
         while (!dici.contains("lukke")) {
             dici = vælgDiciplin(list);
-            System.out.println(dici);
-        }
-        
-        String[] arr = scannerFunc.getDBR().select();
-        for (String string : arr) {
-            System.out.println(string);
+            String[][] arr = scannerFunc.getDBR().select(dici);
+            for (int i = 0; i < arr.length; i++) {
+                System.out.println(" medlemmets navn: " + arr[i][1] + "| Tid: " + arr[i][0]);
+            }
         }
     }
 
