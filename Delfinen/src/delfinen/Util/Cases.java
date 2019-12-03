@@ -2,6 +2,7 @@ package delfinen.Util;
 
 import static delfinen.Controllers.Controller.checkBoolFrom1Or2;
 import delfinen.Datamappers.DBBetaling;
+import delfinen.Datamappers.DBBetalingStatusSpeci;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Model.Medlem;
 import java.time.LocalDate;
@@ -119,6 +120,17 @@ public class Cases {
         }
             }
         
+    public void case6(){
+        String status = "";
+        String navn = scannerFunc.getUserString("Indtast medlems navn:");
+        String fødselsdato = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
+            if(DBBetalingStatusSpeci.getMedlemsKontingent(navn, fødselsdato)){
+                status = " er ikke i restance";
+            }else{
+                status = " er i restance";
+            }
+        System.out.println(navn + status);
+    }
         
         
    }

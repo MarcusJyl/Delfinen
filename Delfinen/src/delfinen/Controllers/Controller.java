@@ -1,5 +1,6 @@
 package delfinen.Controllers;
 
+import delfinen.Datamappers.DBBetalingStatusSpeci;
 import delfinen.Datamappers.DBDiciplin;
 import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBMedlemsOplysninger;
@@ -49,8 +50,10 @@ public class Controller {
                 case 5:
                     cases.case5();
                     break;
-                    
                 case 6:
+                    cases.case6();    
+                    break;
+                case 7:
                     Item item = DBMedlemsOplysninger.medlemsOplysninger();
                     System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
                     break;
