@@ -84,7 +84,7 @@ public class Cases {
             dici = vælgDiciplin(list);
             String[][] arr = scannerFunc.getDBR().select(dici);
             for (int i = 0; i < arr.length; i++) {
-                System.out.println(" medlemmets navn: " + arr[i][1] + "| Tid: " + arr[i][0]);
+                System.out.println(" Medlemmets navn: " + arr[i][1] + "| Tid: " + arr[i][0]);
             }
         }
     }
