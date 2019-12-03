@@ -7,6 +7,7 @@ import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Datamappers.InputHandler;
 import delfinen.Util.Cases;
+import delfinen.Util.Item;
 import delfinen.Util.ScannerFunc;
 import delfinen.View.MainMenuUI;
 import java.time.LocalDate;
@@ -50,7 +51,8 @@ public class Controller {
                     break;
                     
                 case 6:
-                    System.out.println(DBMedlemsOplysninger.medlemsOplysninger());
+                    Item item = DBMedlemsOplysninger.medlemsOplysninger();
+                    System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
                     break;
 
             }

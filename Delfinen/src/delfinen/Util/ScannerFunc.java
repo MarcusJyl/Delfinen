@@ -102,7 +102,7 @@ public class ScannerFunc {
         retVal = input.nextLine();
         try {
             String[] dato = retVal.split("-");
-            retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
+            
             
             for (String string : dato) {
                 if(!checkIfStringParseInt(string)){
@@ -111,15 +111,17 @@ public class ScannerFunc {
             }
             
             
-            if (dato[2].length() == 1) {
-                dato[2] = "0" + dato[2];
+            if (dato[0].length() == 1) {
+                dato[0] = "0" + dato[2];
             }
             if (dato[1].length() == 1) {
                 dato[1] = "0" + dato[1];
             }
-            if (dato[0].length() != 4) {
-                dato[0] = this.getÅr("Forkert års tal indtast et 4 cifret tal");
+            if (dato[2].length() != 4) {
+                dato[2] = this.getÅr("Forkert års tal indtast et 4 cifret tal");
             }
+            retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
+            System.out.println(retVal);
         } catch (Exception e) {
             if (retVal.equals("1")) {
                 return retVal;
