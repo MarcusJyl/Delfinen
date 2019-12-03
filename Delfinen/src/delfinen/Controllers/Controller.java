@@ -2,6 +2,7 @@ package delfinen.Controllers;
 
 import delfinen.Datamappers.DBDiciplin;
 import delfinen.Datamappers.DBMedlem;
+import delfinen.Datamappers.DBMedlemsOplysninger;
 import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Datamappers.InputHandler;
@@ -44,6 +45,14 @@ public class Controller {
                 case 4:
                     cases.case4();
                     break;
+                case 5:
+                    cases.case5();
+                    break;
+                    
+                case 6:
+                    System.out.println(DBMedlemsOplysninger.medlemsOplysninger());
+                    break;
+
             }
         }
     }
@@ -63,7 +72,7 @@ public class Controller {
                 + "2. Se kontingent\n"
                 + "3. Opret trænings resultater\n"
                 + "4. Se top svømmer\n"
-                + "5. TBM\n"
+                + "5. Se Betalingsoversigt\n"
                 + "6. TBM\n"
                 + "7. TBM\n"
                 + "************************************************\n";

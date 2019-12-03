@@ -1,6 +1,7 @@
 package delfinen.Util;
 
 import static delfinen.Controllers.Controller.checkBoolFrom1Or2;
+import delfinen.Datamappers.DBBetaling;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Model.Medlem;
 import java.time.LocalDate;
@@ -110,4 +111,15 @@ public class Cases {
         list.add(dicipliner.get(in));
         return dicipliner.get(in);
     }
-}
+    
+    public void case5(){
+    ArrayList<Item> items = scannerFunc.getDBB().getBelingsoversigt();
+        for (Item item : items) {
+            System.out.println(item);
+        }
+            }
+        
+        
+        
+   }
+
