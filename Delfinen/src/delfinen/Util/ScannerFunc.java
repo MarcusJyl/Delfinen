@@ -1,5 +1,6 @@
 package delfinen.Util;
 
+import delfinen.Datamappers.DBBetaling;
 import delfinen.Datamappers.DBDiciplin;
 import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBResultat;
@@ -18,6 +19,11 @@ public class ScannerFunc {
     private DBResultat DBR = new DBResultat();
     private DBMedlem DBM = new DBMedlem("medlems_id", "medlemmer");
     private DBTræning DBT = new DBTræning("trænings_id", "træning");
+    private DBBetaling DBB = new DBBetaling();
+
+    public DBBetaling getDBB() {
+        return DBB;
+    }
 
     public Scanner getInput() {
         return input;

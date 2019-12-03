@@ -44,6 +44,8 @@ public class Controller {
                 case 4:
                     cases.case4();
                     break;
+                case 5:
+                    cases.case5();
             }
         }
     }
