@@ -16,6 +16,7 @@ public class DBMedlemsOplysninger {
         Statement statement = null;
         ResultSet resultSet = null;
         ScannerFunc sc = new ScannerFunc();
+        Item item = new Item();
 
         String navn2 = sc.getUserString("Indtast medlems navn:");
         String fødselsdato2 = sc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
@@ -28,7 +29,7 @@ public class DBMedlemsOplysninger {
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "SELECT medlems_holdtype, medlems_status, medlems_kontingent, medlems_kontingent_status FROM medlemmer WHERE medlems_id = " + id + ";";
+            String query = "SELECT medlems_holdtype, medlems_status, medlems_kontingent, medlems_kontingent_status FROM medlemmer WHERE medlems_id = " + 1 + ";";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 
@@ -37,7 +38,10 @@ public class DBMedlemsOplysninger {
                 status = resultSet.getString("medlems_status");
                 kontingent = resultSet.getInt("medlems_kontingent");
                 kontingentStatus = resultSet.getInt("medlems_kontingent_status");
-
+                item.setHoldtype(holdtype);
+                item.setKontingent(kontingent);
+                item.setStatus1(status);
+                item.setKontingentStatus(kontingentStatus);
             }
 
             //lukker
@@ -49,8 +53,6 @@ public class DBMedlemsOplysninger {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
-        
-        Item item = new Item(holdtype, status, kontingent, kontingentStatus);
         return item;
     }
 }

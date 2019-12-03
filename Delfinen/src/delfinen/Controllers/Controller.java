@@ -7,6 +7,7 @@ import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Datamappers.InputHandler;
 import delfinen.Util.Cases;
+import delfinen.Util.Item;
 import delfinen.Util.ScannerFunc;
 import delfinen.View.MainMenuUI;
 import java.time.LocalDate;
@@ -22,13 +23,13 @@ public class Controller {
         int svar = 0;
 
         while (svar != 9) {
-            svar = scanner.getUserInteger(showMainMenu());
+            svar = scanner.getUserInteger(showMainMenu(), 7, 1);
             switch (svar) {
                 case 1:
                     String navn1 = scanner.getUserString("Indtast det nye medlems navn:");
                     String fødselsdato1 = scanner.getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
-                    int status1 = scanner.getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv");
-                    int holdtype1 = scanner.getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence");
+                    int status1 = scanner.getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv", 2, 1);
+                    int holdtype1 = scanner.getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence", 2 , 1);
                     InputHandler.lavMedlem(navn1, fødselsdato1, holdtype1, status1);
 
                     scanner.insertDiciplin(holdtype1);
@@ -50,7 +51,8 @@ public class Controller {
                     break;
                     
                 case 6:
-                    System.out.println(DBMedlemsOplysninger.medlemsOplysninger());
+                    Item item = DBMedlemsOplysninger.medlemsOplysninger();
+                    System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
                     break;
 
             }

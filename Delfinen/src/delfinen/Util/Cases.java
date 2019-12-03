@@ -23,13 +23,13 @@ public class Cases {
             LocalDate date = LocalDate.now();
             dato = date.toString();
         }
-        int træningsType = scannerFunc.getUserInteger("Trænings type:\n1. Senior\n2. Junior");
-        int træningsForm = scannerFunc.getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion");
+        int træningsType = scannerFunc.getUserInteger("Trænings type:\n1. Senior\n2. Junior", 2 ,1);
+        int træningsForm = scannerFunc.getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion", 2, 1);
 
         scannerFunc.getDBT().insert(dato, checkBoolFrom1Or2(træningsType), checkBoolFrom1Or2(træningsForm));
 
         if (træningsForm == 1) {
-            int opretRes = scannerFunc.getUserInteger("Ønskes der at opret resultater for denne træning?\n1. Ja\n2. Nej");
+            int opretRes = scannerFunc.getUserInteger("Ønskes der at opret resultater for denne træning?\n1. Ja\n2. Nej", 2, 1);
             if (opretRes == 1) {
                 if (træningsType == 1) {
                     int lastTræningsId = scannerFunc.getDBT().størsteId();

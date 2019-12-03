@@ -12,9 +12,33 @@ public class Item {
         this.navn = navn;
         this.status = status;
     }
-    
+
     public Item(String holdtype, String status1, int kontingent, int kontingentStatus) {
+        this.holdtype = holdtype;
+        this.status1 = status1;
+        this.kontingent = kontingent;
+        this.kontingentStatus = kontingentStatus;
     }
+
+    public Item() {
+    }
+
+    public void setHoldtype(String holdtype) {
+        this.holdtype = holdtype;
+    }
+
+    public void setStatus1(String status1) {
+        this.status1 = status1;
+    }
+
+    public void setKontingent(int kontingent) {
+        this.kontingent = kontingent;
+    }
+
+    public void setKontingentStatus(int kontingentStatus) {
+        this.kontingentStatus = kontingentStatus;
+    }
+
 
     public String getNavn() {
         return navn;

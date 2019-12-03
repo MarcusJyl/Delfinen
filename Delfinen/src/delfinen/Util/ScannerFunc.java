@@ -56,12 +56,44 @@ public class ScannerFunc {
         return retVal;
     }
 
-    public int getUserInteger(String tmp) {
+    public int getUserInteger(String tmp, int max, int min) {
         int retVal = 0;
+        boolean error = true;
         System.out.println(tmp);
-        retVal = input.nextInt();
-        input.nextLine();
-        return retVal;
+        do {
+            try {
+                Scanner myScan = new Scanner(System.in);
+                retVal = myScan.nextInt();
+                myScan.nextLine();
+                error = false;
+            } catch (Exception e) {
+                System.out.println("Ikke vaild input det skal være et helt tal melle " + max + " og " + min);
+                error = true;
+            }
+        } while (error);
+
+        if (retVal <= max && retVal >= min) {
+            return retVal;
+        } else {
+            return getUserInteger("Ikke vaild input det skal være et helt tal melle " + max + " og " + min, max, min);
+        }
+    }
+
+    public boolean checkIfStringParseInt(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    
+    public String getÅr(String tekst){
+        String år = getUserString(tekst);
+        if(år.length() != 4 || !checkIfStringParseInt(år)){
+            getÅr(tekst);
+        }
+        return år;
     }
 
     public String getFøds(String tekst) {
@@ -70,12 +102,31 @@ public class ScannerFunc {
         retVal = input.nextLine();
         try {
             String[] dato = retVal.split("-");
+            
+            
+            for (String string : dato) {
+                if(!checkIfStringParseInt(string)){
+                    return getFøds("Invalid input:\n" + tekst);
+                }
+            }
+            
+            
+            if (dato[0].length() == 1) {
+                dato[0] = "0" + dato[2];
+            }
+            if (dato[1].length() == 1) {
+                dato[1] = "0" + dato[1];
+            }
+            if (dato[2].length() != 4) {
+                dato[2] = this.getÅr("Forkert års tal indtast et 4 cifret tal");
+            }
             retVal = dato[2] + "-" + dato[1] + "-" + dato[0];
+            System.out.println(retVal);
         } catch (Exception e) {
             if (retVal.equals("1")) {
                 return retVal;
             } else {
-                getFøds("Forkert format:\nIndtast medlems fødselsdato i følgende format: dd-mm-yyyy");
+                getFøds("Forkert format:\n" + tekst);
             }
         }
         return retVal;
