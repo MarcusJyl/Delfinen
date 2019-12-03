@@ -113,7 +113,10 @@ public class Cases {
     }
     
     public void case5(){
-                System.out.println(scannerFunc.getDBB().getBelingsoversigt());
+    ArrayList<Item> items = scannerFunc.getDBB().getBelingsoversigt();
+        for (Item item : items) {
+            System.out.println(item);
+        }
             }
         
         

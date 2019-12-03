@@ -1,10 +1,12 @@
 package delfinen.Datamappers;
 
 import delfinen.Util.DBConnector;
+import delfinen.Util.Item;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DBBetaling extends DBCalls {
 
@@ -12,8 +14,8 @@ public class DBBetaling extends DBCalls {
         super();
     }
 
-    public boolean getBelingsoversigt() {
-        boolean retVal = false;
+    public  ArrayList<Item> getBelingsoversigt() {
+        ArrayList<Item> retVal = new ArrayList();
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -25,7 +27,10 @@ public class DBBetaling extends DBCalls {
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                retVal = resultSet.getBoolean("medlems_kontingent_status");
+                boolean status = resultSet.getBoolean("medlems_kontingent_status");
+                String navn = resultSet.getString("medlems_navn");
+                Item tmpItem = new Item(navn, status);
+                retVal.add(tmpItem);
             }
 
             //lukker
@@ -45,3 +50,4 @@ public class DBBetaling extends DBCalls {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
