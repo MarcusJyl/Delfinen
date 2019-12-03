@@ -50,8 +50,7 @@ public class Controller {
                     break;
                     
                 case 6:
-                    DBMedlemsOplysninger test = new DBMedlemsOplysninger();
-                    System.out.println(test.medlemsOplysninger());
+                    System.out.println(DBMedlemsOplysninger.medlemsOplysninger());
                     break;
 
             }

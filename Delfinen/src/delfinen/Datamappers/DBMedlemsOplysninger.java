@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 import delfinen.Util.ScannerFunc;
+import delfinen.Util.Item;
 
 public class DBMedlemsOplysninger {
 
-    public static void medlemsOplysninger() {
+    public static Item medlemsOplysninger() {
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -48,7 +49,8 @@ public class DBMedlemsOplysninger {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
-
-        System.out.println(holdtype + status + kontingent + kontingentStatus);
+        
+        Item item = new Item(holdtype, status, kontingent, kontingentStatus);
+        return item;
     }
 }
