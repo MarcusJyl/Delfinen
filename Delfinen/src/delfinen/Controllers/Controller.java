@@ -49,8 +49,9 @@ public class Controller {
                     cases.case5();
                     break;
                     
-                case 6: 
-                    System.out.println(DBMedlemsOplysninger.medlemsOplysninger());
+                case 6:
+                    DBMedlemsOplysninger test = new DBMedlemsOplysninger();
+                    System.out.println(test.medlemsOplysninger());
                     break;
 
             }
