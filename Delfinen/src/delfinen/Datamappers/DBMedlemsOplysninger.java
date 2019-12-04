@@ -29,7 +29,7 @@ public class DBMedlemsOplysninger {
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "SELECT medlems_holdtype, medlems_status, medlems_kontingent, medlems_kontingent_status FROM medlemmer WHERE medlems_id = " + 1 + ";";
+            String query = "SELECT medlems_holdtype, medlems_status, medlems_kontingent, medlems_kontingent_status FROM medlemmer WHERE medlems_id = " + id + ";";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 

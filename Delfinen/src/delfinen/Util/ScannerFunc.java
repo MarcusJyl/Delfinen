@@ -76,7 +76,7 @@ public class ScannerFunc {
                 myScan.nextLine();
                 error = false;
             } catch (Exception e) {
-                System.out.println("Ikke vaild input det skal være et helt tal melle " + max + " og " + min);
+                System.out.println("Ikke valid input det skal være et helt tal mellem " + max + " og " + min);
                 error = true;
             }
         } while (error);
@@ -84,7 +84,7 @@ public class ScannerFunc {
         if (retVal <= max && retVal >= min) {
             return retVal;
         } else {
-            return getUserInteger("Ikke vaild input det skal være et helt tal melle " + max + " og " + min, max, min);
+            return getUserInteger("Ikke valid input det skal være et helt tal mellem " + max + " og " + min, max, min);
         }
     }
 

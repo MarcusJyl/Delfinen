@@ -94,8 +94,14 @@ public class Controller {
                 + "3. Opret trænings resultater\n"
                 + "4. Se top svømmer\n"
                 + "5. Se Betalingsoversigt\n"
+<<<<<<< HEAD
                 + "6. TBM\n"
                 + "7. TBM\n"
                 + "************************************************";
+=======
+                + "6. Se betalings status\n"
+                + "7. Medlems oplysninger\n"
+                + "************************************************\n";
+>>>>>>> master
     }
 }
