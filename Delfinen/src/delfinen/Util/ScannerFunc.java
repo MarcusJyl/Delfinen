@@ -2,8 +2,10 @@ package delfinen.Util;
 
 import delfinen.Datamappers.DBBetaling;
 import delfinen.Datamappers.DBDiciplin;
+import delfinen.Datamappers.DBHold;
 import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBResultat;
+import delfinen.Datamappers.DBStævne;
 import delfinen.Datamappers.DBTræning;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,11 +17,18 @@ import java.util.Scanner;
 public class ScannerFunc {
 
     private Scanner input;
+
     private DBDiciplin DBD = new DBDiciplin();
     private DBResultat DBR = new DBResultat();
     private DBMedlem DBM = new DBMedlem("medlems_id", "medlemmer");
     private DBTræning DBT = new DBTræning("trænings_id", "træning");
     private DBBetaling DBB = new DBBetaling();
+    private DBHold DBH = new DBHold();
+    private DBStævne DBS = new DBStævne("stævne_id", "stævne");
+
+    public DBStævne getDBS() {
+        return DBS;
+    }
 
     public DBBetaling getDBB() {
         return DBB;
@@ -87,10 +96,10 @@ public class ScannerFunc {
         }
         return true;
     }
-    
-    public String getÅr(String tekst){
+
+    public String getÅr(String tekst) {
         String år = getUserString(tekst);
-        if(år.length() != 4 || !checkIfStringParseInt(år)){
+        if (år.length() != 4 || !checkIfStringParseInt(år)) {
             getÅr(tekst);
         }
         return år;
@@ -102,17 +111,15 @@ public class ScannerFunc {
         retVal = input.nextLine();
         try {
             String[] dato = retVal.split("-");
-            
-            
+
             for (String string : dato) {
-                if(!checkIfStringParseInt(string)){
+                if (!checkIfStringParseInt(string)) {
                     return getFøds("Invalid input:\n" + tekst);
                 }
             }
-            
-            
+
             if (dato[0].length() == 1) {
-                dato[0] = "0" + dato[2];
+                dato[0] = "0" + dato[0];
             }
             if (dato[1].length() == 1) {
                 dato[1] = "0" + dato[1];

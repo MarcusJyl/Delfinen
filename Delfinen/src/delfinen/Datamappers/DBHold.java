@@ -1,3 +1,4 @@
+
 package delfinen.Datamappers;
 
 import delfinen.Util.DBConnector;
@@ -5,20 +6,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DBStævne extends DBCalls {
 
-    public DBStævne(String idName, String tableName) {
-        super(idName, tableName);
-    }
+public class DBHold extends DBCalls {
 
-    //int id, String navn, String dato, 
+    @Override
+    //int id, int medlemsId, int StævneId
     public void insert(Object... val) {
-        Connection MyConnector = null;
+                Connection MyConnector = null;
         Statement statement = null;
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into stævne values (null,'" + val[0] + "','" + val[1] + "');";
+            String query = "insert into hold values (null," + val[0] + "," + val[1] + ");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 
@@ -30,4 +29,5 @@ public class DBStævne extends DBCalls {
             System.out.println(ex);
         }
     }
+    
 }

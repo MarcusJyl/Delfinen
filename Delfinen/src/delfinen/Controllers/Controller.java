@@ -24,7 +24,7 @@ public class Controller {
         int svar = 0;
 
         while (svar != 9) {
-            svar = scanner.getUserInteger(showMainMenu(), 7, 1);
+            svar = scanner.getUserInteger(showMainMenu(), 9, 1);
             switch (svar) {
                 case 1:
                     String navn1 = scanner.getUserString("Indtast det nye medlems navn:");
@@ -57,6 +57,22 @@ public class Controller {
                     Item item = DBMedlemsOplysninger.medlemsOplysninger();
                     System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
                     break;
+                case 8:
+                    String navn8 = scanner.getUserString("Skriv stævnets navn:");
+                    String dato8 = scanner.getFøds("Indtast dato på stævnet i følgende format: dd-mm-yyyy");
+                    scanner.getDBS().insert(navn8, dato8);
+                    
+                    int stævneId = scanner.getDBS().størsteId();
+                    int antalMedlemmerPåHoldet = scanner.getUserInteger("Hvor mange svømmer er der på holdet", 10, 2);
+                    for (int i = 0; i < antalMedlemmerPåHoldet; i++) {
+                        String navn = scanner.getUserString("Skriv svømmers navn:");
+                        String føds = scanner.getFøds("Skriv svømmers fødselsdag i format dd-mm-yyyy");
+                        
+                        scanner.getDBH().insert(, stævneId);
+                    }
+                    
+                    
+                    break;
 
             }
         }
@@ -80,6 +96,6 @@ public class Controller {
                 + "5. Se Betalingsoversigt\n"
                 + "6. TBM\n"
                 + "7. TBM\n"
-                + "************************************************\n";
+                + "************************************************";
     }
 }

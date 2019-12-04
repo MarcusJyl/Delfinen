@@ -102,7 +102,7 @@ public class DBMedlem extends DBCalls {
         return retVal;
     }
 
-    public static int getMedlemsId(String navn, String dato) {
+    public int getMedlemsId(String navn, String dato) {
         int retVal = 0;
         Connection MyConnector = null;
         Statement statement = null;
