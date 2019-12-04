@@ -7,6 +7,7 @@ import delfinen.Datamappers.DBMedlemsOplysninger;
 import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.DBTræning;
 import delfinen.Datamappers.InputHandler;
+import delfinen.Model.Medlem;
 import delfinen.Util.Cases;
 import delfinen.Util.Item;
 import delfinen.Util.ScannerFunc;
@@ -58,6 +59,8 @@ public class Controller {
                     System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
                     break;
                 case 8:
+                    int holdId = scanner.getDBH().størsteId() + 1;
+                    
                     String navn8 = scanner.getUserString("Skriv stævnets navn:");
                     String dato8 = scanner.getFøds("Indtast dato på stævnet i følgende format: dd-mm-yyyy");
                     scanner.getDBS().insert(navn8, dato8);
@@ -66,12 +69,17 @@ public class Controller {
                     int antalMedlemmerPåHoldet = scanner.getUserInteger("Hvor mange svømmer er der på holdet", 10, 2);
                     for (int i = 0; i < antalMedlemmerPåHoldet; i++) {
                         String navn = scanner.getUserString("Skriv svømmers navn:");
-                        String føds = scanner.getFøds("Skriv svømmers fødselsdag i format dd-mm-yyyy");
                         
-                        scanner.getDBH().insert(, stævneId);
+                        ArrayList<Medlem> medlemmer = scanner.getDBM().getAlleMedlemmerDerStarterMed(navn);
+                        int j = 0;
+                        for (Medlem medlem : medlemmer) {
+                            j++;
+                            System.out.println(j + ". " + "Navn: " + medlem.getNavn() + "| Fødselsdag: " + medlem.getFødselsdato());
+                        }
+                        int nummer = scanner.getUserInteger("Skrive nummer på svømmer", j, 1);
+                        int medlemsId = medlemmer.get(nummer - 1).getId();
+                        scanner.getDBH().insert(holdId, medlemsId, stævneId);
                     }
-                    
-                    
                     break;
 
             }
@@ -94,14 +102,12 @@ public class Controller {
                 + "3. Opret trænings resultater\n"
                 + "4. Se top svømmer\n"
                 + "5. Se Betalingsoversigt\n"
-<<<<<<< HEAD
                 + "6. TBM\n"
                 + "7. TBM\n"
-                + "************************************************";
-=======
                 + "6. Se betalings status\n"
                 + "7. Medlems oplysninger\n"
-                + "************************************************\n";
->>>>>>> master
+                + "8. opret stævne og hold til det\n"
+                + "************************************************";
+
     }
 }

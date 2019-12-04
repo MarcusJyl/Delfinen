@@ -9,6 +9,10 @@ import java.sql.Statement;
 
 public class DBHold extends DBCalls {
 
+    public DBHold(String idName, String tableName) {
+        super(idName, tableName);
+    }
+
     @Override
     //int id, int medlemsId, int StævneId
     public void insert(Object... val) {
@@ -17,7 +21,7 @@ public class DBHold extends DBCalls {
         try {
             MyConnector = DBConnector.getConnector();
 
-            String query = "insert into hold values (null," + val[0] + "," + val[1] + ");";
+            String query = "insert into hold values (" + val[0] + "," + val[1] + "," + val[2] + ");";
             statement = MyConnector.createStatement();
             statement.executeUpdate(query);
 

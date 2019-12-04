@@ -23,8 +23,12 @@ public class ScannerFunc {
     private DBMedlem DBM = new DBMedlem("medlems_id", "medlemmer");
     private DBTræning DBT = new DBTræning("trænings_id", "træning");
     private DBBetaling DBB = new DBBetaling();
-    private DBHold DBH = new DBHold();
+    private DBHold DBH = new DBHold("hold_id", "hold");
     private DBStævne DBS = new DBStævne("stævne_id", "stævne");
+
+    public DBHold getDBH() {
+        return DBH;
+    }
 
     public DBStævne getDBS() {
         return DBS;

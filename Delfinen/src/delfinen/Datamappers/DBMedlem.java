@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DBMedlem extends DBCalls {
 
-    public DBMedlem(String idName , String tableName) {
+    public DBMedlem(String idName, String tableName) {
         super(idName, tableName);
     }
 
@@ -54,7 +54,6 @@ public class DBMedlem extends DBCalls {
 //            System.out.println(ex);
 //        }
 //    }
-
     public static void skiftHoldtype(String holdtype, int id) {
         Connection MyConnector = null;
         Statement statement = null;
@@ -143,20 +142,19 @@ public class DBMedlem extends DBCalls {
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 
-            
             //int id, String navn, String fødselsdato, String holdtype
             while (resultSet.next()) {
                 int id = resultSet.getInt("medlems_id");
                 String navn = resultSet.getString("medlems_navn");
                 String dato = resultSet.getString("medlems_fødselsdato");
                 String hold = resultSet.getString("medlems_holdtype");
-                
+
                 String[] datoArr = dato.split("-");
                 int[] datoTal = new int[datoArr.length];
                 for (int i = 0; i < datoTal.length; i++) {
                     datoTal[i] = Integer.parseInt(datoArr[i]);
                 }
-                
+
                 Medlem tempMedlem = new Medlem(id, navn, dato, hold);
                 retVal.add(tempMedlem);
             }
@@ -171,5 +169,50 @@ public class DBMedlem extends DBCalls {
             System.out.println(ex);
         }
         return retVal;
+    }
+
+    public ArrayList getAlleMedlemmerDerStarterMed(String navn) {
+        ArrayList<Medlem> medlemmer = new ArrayList();
+
+        ArrayList<Medlem> retVal = new ArrayList();
+
+        Connection MyConnector = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "SELECT * FROM medlemmer WHERE medlems_navn LIKE '" + navn + "%';";
+            statement = MyConnector.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            //int id, String navn, String fødselsdato, String holdtype
+            while (resultSet.next()) {
+                int id = resultSet.getInt("medlems_id");
+                String medlemsNavn = resultSet.getString("medlems_navn");
+                String dato = resultSet.getString("medlems_fødselsdato");
+                String hold = resultSet.getString("medlems_holdtype");
+
+                String[] datoArr = dato.split("-");
+                int[] datoTal = new int[datoArr.length];
+                for (int i = 0; i < datoTal.length; i++) {
+                    datoTal[i] = Integer.parseInt(datoArr[i]);
+                }
+
+                Medlem tempMedlem = new Medlem(id, medlemsNavn, dato, hold);
+                medlemmer.add(tempMedlem);
+            }
+
+            //lukker
+            resultSet.close();;
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        return medlemmer;
     }
 }
