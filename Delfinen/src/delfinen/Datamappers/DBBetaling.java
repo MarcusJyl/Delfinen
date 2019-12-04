@@ -14,7 +14,7 @@ public class DBBetaling extends DBCalls {
         super();
     }
 
-    public  ArrayList<Item> getBelingsoversigt() {
+    public  ArrayList<Item> getBetalingsoversigt() {
         ArrayList<Item> retVal = new ArrayList();
         Connection MyConnector = null;
         Statement statement = null;
