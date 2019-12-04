@@ -120,7 +120,7 @@ public class Cases {
         }
             }
         
-    public void case6(){
+    public String case6() {
         String status = "";
         String navn = scannerFunc.getUserString("Indtast medlems navn:");
         String fødselsdato = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
@@ -129,7 +129,7 @@ public class Cases {
             }else{
                 status = " er i restance";
             }
-        System.out.println(navn + status);
+        return navn + status;
     }
         
         
