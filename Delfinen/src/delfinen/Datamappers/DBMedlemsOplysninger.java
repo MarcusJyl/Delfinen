@@ -20,7 +20,7 @@ public class DBMedlemsOplysninger {
 
         String navn2 = sc.getUserString("Indtast medlems navn:");
         String fødselsdato2 = sc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
-        int id = DBMedlem.getMedlemsId(navn2, fødselsdato2);
+        int id = sc.getDBM().getMedlemsId(navn2, fødselsdato2);
 
         String holdtype = "";
         String status = "";
