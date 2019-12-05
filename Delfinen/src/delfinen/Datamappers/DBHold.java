@@ -66,4 +66,35 @@ public class DBHold extends DBCalls {
         return medlemsIder;
     }
 
+    public ArrayList<Integer> getHold() {
+        ArrayList<Integer> stævneIder = new ArrayList();
+
+        Connection MyConnector = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            MyConnector = DBConnector.getConnector();
+            String query = "SELECT DISTINCT stævne_id FROM delfinen.hold;";
+            statement = MyConnector.createStatement();
+            resultSet = statement.executeQuery(query);
+
+            //int id, String navn, String fødselsdato, String holdtype
+            while (resultSet.next()) {
+                stævneIder.add(resultSet.getInt("stævne_id"));
+            }
+
+            //lukker
+            resultSet.close();;
+            statement.close();
+            MyConnector.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+
+        return stævneIder;
+    }
+
 }

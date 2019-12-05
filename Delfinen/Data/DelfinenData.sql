@@ -125,7 +125,6 @@ CREATE TABLE `stævne` (
   `stævne_id` int(11) NOT NULL AUTO_INCREMENT,
   `stævne_navn` varchar(255) NOT NULL,
   `dato` varchar(255) NOT NULL,
-  `placering` int(11) NOT NULL,
   PRIMARY KEY (`stævne_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

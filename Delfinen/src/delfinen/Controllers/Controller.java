@@ -47,15 +47,24 @@ public class Controller {
                     cases.case8();
                     break;
                 case 9:
-                    ArrayList<Integer> medlemsIder = scanner.getDBH().getMedlemmer(1);
+                    ArrayList<Integer> stævneIder = scanner.getDBH().getHold();
+                    for (Integer integer : stævneIder) {
+                        System.out.println(scanner.getDBS().getStævne(integer));
+                    }
+                    int holdId = scanner.getUserInteger("Skriv nummeret på det ønsket stævne: ", stævneIder.size(), 0);
+                    ArrayList<Integer> medlemsIder = scanner.getDBH().getMedlemmer(holdId);
+                    ArrayList<Medlem> medlemmer = new ArrayList();
                     int i = 0;
                     for (Integer id : medlemsIder) {
-                        i++;
                         Medlem medlem = DBMedlemsOplysninger.medlemsOplysninger(id);
-                        System.out.println(i + ". " + medlem);
+                        medlem.setDicipliner(scanner.getDBD().selectById(id));
+                        medlemmer.add(medlem);
+                    }
+                    for (Medlem medlem : medlemmer) {
+                        i++;
+                        System.out.println(i + ". " + medlem + "| Dicipliner: " + medlem.getDicipliner());
                     }
                     break;
-
             }
             System.out.println("************************************************\nSkriv hvad som helst for at gå til hoved menuen igen:");
             scanner.getInput().nextLine();
