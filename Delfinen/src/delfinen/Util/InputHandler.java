@@ -10,21 +10,21 @@ public class InputHandler {
         DBMedlem DBM = new DBMedlem("sdasda", "dasdasda");
         if (holdtype == 1) {
             if (status == 1) {
-                DBM.insert(navn, fødselsDato, "motionist", "passiv", beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "motionist", "passiv", beregnKontingent(fødselsDato, status));
             } else {
-                DBM.insert(navn, fødselsDato, "motionist", "aktiv",beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "motionist", "aktiv",beregnKontingent(fødselsDato, status));
             }
 
         } else if (holdtype == 2) {
             if (status == 1) {
-                DBM.insert(navn, fødselsDato, "Konkurrence", "passiv", beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "Konkurrence", "passiv", beregnKontingent(fødselsDato, status));
             } else {
-                DBM.insert(navn, fødselsDato, "Konkurrence", "aktiv", beregnKotingent(fødselsDato, status));
+                DBM.insert(navn, fødselsDato, "Konkurrence", "aktiv", beregnKontingent(fødselsDato, status));
             }
         }
     }
 
-    public static double beregnKotingent(String føds, int status) {
+    public static double beregnKontingent(String føds, int status) {
         int alder = getAlder(føds);
         double kontingent = 500;
         if (status == 2) {
