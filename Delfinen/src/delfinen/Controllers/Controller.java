@@ -17,7 +17,7 @@ public class Controller {
         while (svar != 0) {
             if (scanner.getInput().hasNext()) {
                 svar = scanner.getUserInteger(MainMenuUI.showMainMenu(), 9, 1);
-
+            
                 switch (svar) {
                     case 0:
                         System.exit(0);
