@@ -32,32 +32,4 @@ public class DBTræning extends DBCalls {
             System.out.println(ex);
         }
     }
-
-//        public static int getNyesteTræningsId() {
-//        int retVal = 0;
-//        Connection MyConnector = null;
-//        Statement statement = null;
-//        ResultSet resultSet = null;
-//
-//        try {
-//            MyConnector = DBConnector.getConnector();
-//            String query = "select MAX(trænings_id) from træning;";
-//            statement = MyConnector.createStatement();
-//            resultSet = statement.executeQuery(query);
-//
-//            while (resultSet.next()) {
-//                retVal = resultSet.getInt("MAX(trænings_id)");
-//            }
-//
-//            //lukker
-//            resultSet.close();;
-//            statement.close();
-//            MyConnector.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        } catch (ClassNotFoundException ex) {
-//            System.out.println(ex);
-//        }
-//        return retVal;
-//    }
 }

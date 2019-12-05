@@ -1,5 +1,6 @@
-package delfinen.Datamappers;
+package delfinen.Util;
 
+import delfinen.Datamappers.DBMedlem;
 import java.time.LocalDate;
 import java.time.Period;
 

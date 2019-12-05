@@ -1,12 +1,10 @@
 package delfinen.Util;
 
-import static delfinen.Controllers.Controller.checkBoolFrom1Or2;
 import delfinen.Datamappers.DBBetaling;
 import delfinen.Datamappers.DBBetalingStatusSpeci;
 import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBMedlemsOplysninger;
 import delfinen.Datamappers.DBTræning;
-import delfinen.Datamappers.InputHandler;
 import delfinen.Model.Medlem;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -47,7 +45,7 @@ public class Cases {
         int træningsType = scannerFunc.getUserInteger("Trænings type:\n1. Senior\n2. Junior", 2, 1);
         int træningsForm = scannerFunc.getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion", 2, 1);
 
-        scannerFunc.getDBT().insert(dato, checkBoolFrom1Or2(træningsType), checkBoolFrom1Or2(træningsForm));
+        scannerFunc.getDBT().insert(dato, scannerFunc.checkBoolFrom1Or2(træningsType), scannerFunc.checkBoolFrom1Or2(træningsForm));
 
         if (træningsForm == 1) {
             int opretRes = scannerFunc.getUserInteger("Ønskes der at opret resultater for denne træning?\n1. Ja\n2. Nej", 2, 1);
@@ -63,10 +61,10 @@ public class Cases {
                     }
 
                     ArrayList<String> dicipliner = new ArrayList();
-                    dicipliner.add("Crawl");
-                    dicipliner.add("Brystsvømning");
-                    dicipliner.add("Rygcrawl");
-                    dicipliner.add("Butterfly");
+                    dicipliner.add("crawl");
+                    dicipliner.add("brystsvømning");
+                    dicipliner.add("rygcrawl");
+                    dicipliner.add("butterfly");
                     dicipliner.add("For at lukke");
 
                     int in = 0;
@@ -156,10 +154,10 @@ public class Cases {
     public static String vælgDiciplin(ArrayList<String> list) {
         Scanner input = new Scanner(System.in);
         ArrayList<String> dicipliner = new ArrayList();
-        dicipliner.add("Crawl");
-        dicipliner.add("Brystsvømning");
-        dicipliner.add("Rygcrawl");
-        dicipliner.add("Butterfly");
+        dicipliner.add("crawl");
+        dicipliner.add("brystsvømning");
+        dicipliner.add("rygcrawl");
+        dicipliner.add("butterfly");
         dicipliner.add("For at lukke");
         for (String dici : list) {
             dicipliner.remove(dici);
