@@ -41,7 +41,7 @@ public class Controller {
                     cases.case6();
                     break;
                 case 7:
-                    cases.case6();
+                    cases.case7();
                     break;
                 case 8:
                     cases.case8();

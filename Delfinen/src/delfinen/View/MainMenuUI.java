@@ -12,10 +12,8 @@ public class MainMenuUI {
                 + "3. Opret trænings resultater\n"
                 + "4. Se top svømmer\n"
                 + "5. Se Betalingsoversigt\n"
-                + "6. Se kontinigent\n"
-                + "7. Se medlems oplysninger\n"
                 + "6. Se betalings status\n"
-                + "7. Medlems oplysninger\n"
+                + "7. Se medlems oplysninger\n"
                 + "8. opret stævne og hold til det\n"
                 + "9. Se hold og indtast placeringere\n"
                 + "************************************************";
