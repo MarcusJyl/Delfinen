@@ -48,8 +48,8 @@ public class DBResultat extends DBCalls {
                     + "t.træning_dato,"
                     + "m.medlems_navn "
                     + "FROM delfinen.resultater r "
-                    + "RIGHT JOIN træning t on r.trænings_id = t.trænings_id "
-                    + "RIGHT JOIN medlemmer m on r.medlems_id = r.medlems_id "
+                    + "INNER JOIN træning t using (trænings_id) "
+                    + "INNER JOIN medlemmer m using (medlems_id) "
                     + "where r.tid is not null and træning_dato > '" + dato + "' and r.diciplin = '" + dici + "' "
                     + "order by r.tid;";
             statement = MyConnector.createStatement();

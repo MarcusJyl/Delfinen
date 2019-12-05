@@ -5,7 +5,6 @@ import delfinen.Datamappers.DBBetalingStatusSpeci;
 import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBMedlemsOplysninger;
 import delfinen.Datamappers.DBTræning;
-import delfinen.Datamappers.InputHandler;
 import delfinen.Model.Medlem;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -62,10 +61,10 @@ public class Cases {
                     }
 
                     ArrayList<String> dicipliner = new ArrayList();
-                    dicipliner.add("Crawl");
-                    dicipliner.add("Brystsvømning");
-                    dicipliner.add("Rygcrawl");
-                    dicipliner.add("Butterfly");
+                    dicipliner.add("crawl");
+                    dicipliner.add("brystsvømning");
+                    dicipliner.add("rygcrawl");
+                    dicipliner.add("butterfly");
                     dicipliner.add("For at lukke");
 
                     int in = 0;
@@ -155,10 +154,10 @@ public class Cases {
     public static String vælgDiciplin(ArrayList<String> list) {
         Scanner input = new Scanner(System.in);
         ArrayList<String> dicipliner = new ArrayList();
-        dicipliner.add("Crawl");
-        dicipliner.add("Brystsvømning");
-        dicipliner.add("Rygcrawl");
-        dicipliner.add("Butterfly");
+        dicipliner.add("crawl");
+        dicipliner.add("brystsvømning");
+        dicipliner.add("rygcrawl");
+        dicipliner.add("butterfly");
         dicipliner.add("For at lukke");
         for (String dici : list) {
             dicipliner.remove(dici);
