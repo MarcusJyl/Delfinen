@@ -39,6 +39,9 @@ public class Controller {
                 case 8:
                     cases.case8();
                     break;
+                case 9:
+                    System.exit(0);
+                    break;
 
             }
         }

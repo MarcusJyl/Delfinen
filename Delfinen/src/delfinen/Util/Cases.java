@@ -20,21 +20,22 @@ public class Cases {
     public Cases(ScannerFunc scannerFunc) {
         this.scannerFunc = scannerFunc;
     }
-    public void case1(){
-    String navn1 = scannerFunc.getUserString("Indtast det nye medlems navn:");
-                    String fødselsdato1 = scannerFunc.getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
-                    int status1 = scannerFunc.getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv", 2, 1);
-                    int holdtype1 = scannerFunc.getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence", 2 , 1);
-                    InputHandler.lavMedlem(navn1, fødselsdato1, holdtype1, status1);
 
-                    scannerFunc.insertDiciplin(holdtype1);
+    public void case1() {
+        String navn1 = scannerFunc.getUserString("Indtast det nye medlems navn:");
+        String fødselsdato1 = scannerFunc.getFøds("Indtast det nye medlems fødselsdato i følgende format: dd-mm-yyyy");
+        int status1 = scannerFunc.getUserInteger("Hvilken status skal medlemmet have?\n1. Passiv\n2. Aktiv", 2, 1);
+        int holdtype1 = scannerFunc.getUserInteger("Hvilket hold skal medlemmet tilmeldes?\n1. Motionist\n2. Konkurrence", 2, 1);
+        InputHandler.lavMedlem(navn1, fødselsdato1, holdtype1, status1);
+
+        scannerFunc.insertDiciplin(holdtype1);
     }
-    
+
     public void case2() {
         String navn2 = scannerFunc.getUserString("Indtast medlems navn:");
-                    String fødselsdato2 = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
+        String fødselsdato2 = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
 
-                    System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
+        System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
     }
 
     public void case3() {
@@ -43,7 +44,7 @@ public class Cases {
             LocalDate date = LocalDate.now();
             dato = date.toString();
         }
-        int træningsType = scannerFunc.getUserInteger("Trænings type:\n1. Senior\n2. Junior", 2 ,1);
+        int træningsType = scannerFunc.getUserInteger("Trænings type:\n1. Senior\n2. Junior", 2, 1);
         int træningsForm = scannerFunc.getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion", 2, 1);
 
         scannerFunc.getDBT().insert(dato, checkBoolFrom1Or2(træningsType), checkBoolFrom1Or2(træningsForm));
@@ -110,6 +111,54 @@ public class Cases {
         }
     }
 
+    public void case5() {
+        ArrayList<Item> items = scannerFunc.getDBB().getBetalingsoversigt();
+        for (Item item : items) {
+            System.out.println(item);
+        }
+    }
+
+    public String case6() {
+        String status = "";
+        String navn = scannerFunc.getUserString("Indtast medlems navn:");
+        String fødselsdato = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
+        if (DBBetalingStatusSpeci.getMedlemsKontingent(navn, fødselsdato)) {
+            status = " er ikke i restance";
+        } else {
+            status = " er i restance";
+        }
+        return navn + status;
+    }
+
+    public void case7() {
+        Item item = DBMedlemsOplysninger.medlemsOplysninger();
+        System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
+    }
+
+    public void case8() {
+        int holdId = scannerFunc.getDBH().størsteId() + 1;
+
+        String navn8 = scannerFunc.getUserString("Skriv stævnets navn:");
+        String dato8 = scannerFunc.getFøds("Indtast dato på stævnet i følgende format: dd-mm-yyyy");
+        scannerFunc.getDBS().insert(navn8, dato8);
+
+        int stævneId = scannerFunc.getDBS().størsteId();
+        int antalMedlemmerPåHoldet = scannerFunc.getUserInteger("Hvor mange svømmer er der på holdet", 10, 2);
+        for (int i = 0; i < antalMedlemmerPåHoldet; i++) {
+            String navn = scannerFunc.getUserString("Skriv svømmers navn:");
+
+            ArrayList<Medlem> medlemmer = scannerFunc.getDBM().getAlleMedlemmerDerStarterMed(navn);
+            int j = 0;
+            for (Medlem medlem : medlemmer) {
+                j++;
+                System.out.println(j + ". " + "Navn: " + medlem.getNavn() + "| Fødselsdag: " + medlem.getFødselsdato());
+            }
+            int nummer = scannerFunc.getUserInteger("Skrive nummer på svømmer", j, 1);
+            int medlemsId = medlemmer.get(nummer - 1).getId();
+            scannerFunc.getDBH().insert(holdId, medlemsId, stævneId);
+        }
+    }
+
     public static String vælgDiciplin(ArrayList<String> list) {
         Scanner input = new Scanner(System.in);
         ArrayList<String> dicipliner = new ArrayList();
@@ -131,54 +180,5 @@ public class Cases {
         list.add(dicipliner.get(in));
         return dicipliner.get(in);
     }
-    
-    public void case5(){
-    ArrayList<Item> items = scannerFunc.getDBB().getBetalingsoversigt();
-        for (Item item : items) {
-            System.out.println(item);
-        }
-            }
-        
-    public String case6() {
-        String status = "";
-        String navn = scannerFunc.getUserString("Indtast medlems navn:");
-        String fødselsdato = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
-            if(DBBetalingStatusSpeci.getMedlemsKontingent(navn, fødselsdato)){
-                status = " er ikke i restance";
-            }else{
-                status = " er i restance";
-            }
-        return navn + status;
-    }
-    
-     public void case7(){
-        Item item = DBMedlemsOplysninger.medlemsOplysninger();
-                    System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
-    }    
-     
-    public void case8(){
-        int holdId = scannerFunc.getDBH().størsteId() + 1;
-                    
-                    String navn8 = scannerFunc.getUserString("Skriv stævnets navn:");
-                    String dato8 = scannerFunc.getFøds("Indtast dato på stævnet i følgende format: dd-mm-yyyy");
-                    scannerFunc.getDBS().insert(navn8, dato8);
-                    
-                    int stævneId = scannerFunc.getDBS().størsteId();
-                    int antalMedlemmerPåHoldet = scannerFunc.getUserInteger("Hvor mange svømmer er der på holdet", 10, 2);
-                    for (int i = 0; i < antalMedlemmerPåHoldet; i++) {
-                        String navn = scannerFunc.getUserString("Skriv svømmers navn:");
-                        
-                        ArrayList<Medlem> medlemmer = scannerFunc.getDBM().getAlleMedlemmerDerStarterMed(navn);
-                        int j = 0;
-                        for (Medlem medlem : medlemmer) {
-                            j++;
-                            System.out.println(j + ". " + "Navn: " + medlem.getNavn() + "| Fødselsdag: " + medlem.getFødselsdato());
-                        }
-                        int nummer = scannerFunc.getUserInteger("Skrive nummer på svømmer", j, 1);
-                        int medlemsId = medlemmer.get(nummer - 1).getId();
-                        scannerFunc.getDBH().insert(holdId, medlemsId, stævneId);
-                    }
-    }    
-   
-   }
 
+}
