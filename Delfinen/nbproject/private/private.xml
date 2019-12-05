@@ -3,41 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-            <file>file:/C:/Users/Dane/Desktop/Datamatiker/Git/Delfinen/Delfinen/src/delfinen/Util/DBConnector.java</file>
-            <file>file:/C:/Users/Dane/Desktop/Datamatiker/Git/Delfinen/Delfinen/src/delfinen/Controllers/Controller.java</file>
-            <file>file:/C:/Users/Dane/Desktop/Datamatiker/Git/Delfinen/Delfinen/src/delfinen/Util/Item.java</file>
-            <file>file:/C:/Users/Dane/Desktop/Datamatiker/Git/Delfinen/Delfinen/src/delfinen/Util/ScannerFunc.java</file>
-            <file>file:/C:/Users/Dane/Desktop/Datamatiker/Git/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlemsOplysninger.java</file>
-            <file>file:/C:/Users/Dane/Desktop/Datamatiker/Git/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlem.java</file>
-=======
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Util/Item.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Datamappers/DBResultat.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Util/DBConnector.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Model/Medlem.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Util/DBConfig.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlemsOplysninger.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Datamappers/DBDiciplin.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Controllers/Controller.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Util/Cases.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlem.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Datamappers/DBCalls.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/src/delfinen/Util/ScannerFunc.java</file>
-            <file>file:/C:/Users/marcg/Desktop/Datamatiker/Delfinen/Delfinen/Delfinen/Data/delfinen.sql</file>
->>>>>>> 3ad01fdf09e7bb3288e181f46adaae20af19d052
-=======
+            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/View/MainMenuUI.java</file>
+            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlemsOplysninger.java</file>
             <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/Cases.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBDiciplin.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBResultat.java</file>
             <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBMedlem.java</file>
+            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBResultat.java</file>
             <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/DBTræning.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/DBConnector.java</file>
             <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Model/Medlem.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/DBConfig.java</file>
-            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/InputHandler.java</file>
             <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Controllers/Controller.java</file>
->>>>>>> Stashed changes
+            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Datamappers/InputHandler.java</file>
+            <file>file:/D:/IDK/Delfinen/Delfinen/src/delfinen/Util/DBConfig.java</file>
         </group>
     </open-files>
 </project-private>

@@ -7,6 +7,7 @@ import delfinen.Datamappers.DBMedlem;
 import delfinen.Datamappers.DBResultat;
 import delfinen.Datamappers.DBStævne;
 import delfinen.Datamappers.DBTræning;
+import delfinen.Model.Medlem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -169,5 +170,18 @@ public class ScannerFunc {
                 dicipliner.remove(in);
             }
         }
+    }
+
+    public int getMedlemSomStarterMed() {
+        String navn = getUserString("Skriv svømmers navn:");
+
+        ArrayList<Medlem> medlemmer = getDBM().getAlleMedlemmerDerStarterMed(navn);
+        int j = 0;
+        for (Medlem medlem : medlemmer) {
+            j++;
+            System.out.println(j + ". " + "Navn: " + medlem.getNavn() + "| Fødselsdag: " + medlem.getFødselsdato());
+        }
+        int nummer = getUserInteger("Skrive nummer på svømmer", j, 1);
+        return medlemmer.get(nummer - 1).getId();
     }
 }

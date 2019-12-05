@@ -131,8 +131,11 @@ public class Cases {
     }
 
     public void case7() {
-        Item item = DBMedlemsOplysninger.medlemsOplysninger();
-        System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
+        int medlemsId = scannerFunc.getMedlemSomStarterMed();
+        
+        Medlem item = DBMedlemsOplysninger.medlemsOplysninger(medlemsId);
+        System.out.println(item);
+        //System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
     }
 
     public void case8() {
@@ -145,16 +148,7 @@ public class Cases {
         int stævneId = scannerFunc.getDBS().størsteId();
         int antalMedlemmerPåHoldet = scannerFunc.getUserInteger("Hvor mange svømmer er der på holdet", 10, 2);
         for (int i = 0; i < antalMedlemmerPåHoldet; i++) {
-            String navn = scannerFunc.getUserString("Skriv svømmers navn:");
-
-            ArrayList<Medlem> medlemmer = scannerFunc.getDBM().getAlleMedlemmerDerStarterMed(navn);
-            int j = 0;
-            for (Medlem medlem : medlemmer) {
-                j++;
-                System.out.println(j + ". " + "Navn: " + medlem.getNavn() + "| Fødselsdag: " + medlem.getFødselsdato());
-            }
-            int nummer = scannerFunc.getUserInteger("Skrive nummer på svømmer", j, 1);
-            int medlemsId = medlemmer.get(nummer - 1).getId();
+            int medlemsId = scannerFunc.getMedlemSomStarterMed();
             scannerFunc.getDBH().insert(holdId, medlemsId, stævneId);
         }
     }

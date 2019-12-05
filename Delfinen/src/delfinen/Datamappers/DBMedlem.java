@@ -36,24 +36,6 @@ public class DBMedlem extends DBCalls {
         }
     }
 
-//    public void insert(String navn, String fødselsdag, String holdtype, String status, double kontingent) {
-//        Connection MyConnector = null;
-//        Statement statement = null;
-//        try {
-//            MyConnector = DBConnector.getConnector();
-//
-//            String query = "insert into medlemmer values (null,'" + navn + "','" + fødselsdag + "','" + holdtype + "','" + status + "'," + kontingent + "," + false + ");";
-//            statement = MyConnector.createStatement();
-//            statement.executeUpdate(query);
-//
-//            statement.close();
-//            MyConnector.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        } catch (ClassNotFoundException ex) {
-//            System.out.println(ex);
-//        }
-//    }
     public static void skiftHoldtype(String holdtype, int id) {
         Connection MyConnector = null;
         Statement statement = null;
@@ -212,7 +194,6 @@ public class DBMedlem extends DBCalls {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
-
         return medlemmer;
     }
 }

@@ -24,7 +24,8 @@ DROP TABLE IF EXISTS `hold`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hold` (
   `hold_id` int(11) NOT NULL,
-  `medlems_id` int(11) NOT NULL
+  `medlems_id` int(11) NOT NULL,
+   stævne_id int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

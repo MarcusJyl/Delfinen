@@ -1,5 +1,6 @@
 package delfinen.Datamappers;
 
+import delfinen.Model.Medlem;
 import delfinen.Util.DBConnector;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,48 +12,39 @@ import delfinen.Util.Item;
 
 public class DBMedlemsOplysninger {
 
-    public static Item medlemsOplysninger() {
+    public static Medlem medlemsOplysninger(int id) {
         Connection MyConnector = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        ScannerFunc sc = new ScannerFunc();
-        Item item = new Item();
-
-        String navn2 = sc.getUserString("Indtast medlems navn:");
-        String fødselsdato2 = sc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
-        int id = sc.getDBM().getMedlemsId(navn2, fødselsdato2);
-
-        String holdtype = "";
-        String status = "";
-        int kontingent = 0;
-        int kontingentStatus = 0;
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "SELECT medlems_holdtype, medlems_status, medlems_kontingent, medlems_kontingent_status FROM medlemmer WHERE medlems_id = " + id + ";";
+            String query = "SELECT * FROM medlemmer WHERE medlems_id = " + id + ";";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                holdtype = resultSet.getString("medlems_holdtype");
-                status = resultSet.getString("medlems_status");
-                kontingent = resultSet.getInt("medlems_kontingent");
-                kontingentStatus = resultSet.getInt("medlems_kontingent_status");
-                item.setHoldtype(holdtype);
-                item.setKontingent(kontingent);
-                item.setStatus1(status);
-                item.setKontingentStatus(kontingentStatus);
-            }
+                String holdtype = resultSet.getString("medlems_holdtype");
+                String status = resultSet.getString("medlems_status");
+                int kontingent = resultSet.getInt("medlems_kontingent");
+                boolean kontingentStatus = resultSet.getBoolean("medlems_kontingent_status");
+                String navn = resultSet.getString("medlems_navn");
+                String føds = resultSet.getString("medlems_fødselsdato");
 
-            //lukker
-            resultSet.close();;
-            statement.close();
-            MyConnector.close();
+                Medlem tmpMedlem = new Medlem(id, navn, føds, holdtype, status, kontingent, kontingentStatus);
+
+                //lukker
+                resultSet.close();;
+                statement.close();
+                MyConnector.close();
+
+                return tmpMedlem;
+            }
         } catch (SQLException ex) {
             System.out.println(ex);
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         }
-        return item;
+        return null;
     }
 }

@@ -1,10 +1,12 @@
 package delfinen.View;
 
 public class MainMenuUI {
+
     public static String showMainMenu() {
         return "************************************************\n"
                 + "Velkommen til Delfinen svømmeklub\n"
                 + "Muligheder:\n"
+                + "0. Luk programet\n"
                 + "1. Opret nyt medlem\n"
                 + "2. Se kontingent\n"
                 + "3. Opret trænings resultater\n"
@@ -15,7 +17,7 @@ public class MainMenuUI {
                 + "6. Se betalings status\n"
                 + "7. Medlems oplysninger\n"
                 + "8. opret stævne og hold til det\n"
-                + "9. Luk programet\n"
+                + "9. Se hold og indtast placeringere\n"
                 + "************************************************";
     }
 }
