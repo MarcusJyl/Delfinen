@@ -1,6 +1,5 @@
 package delfinen.Util;
 
-import static delfinen.Controllers.Controller.checkBoolFrom1Or2;
 import delfinen.Datamappers.DBBetaling;
 import delfinen.Datamappers.DBBetalingStatusSpeci;
 import delfinen.Datamappers.DBMedlem;
@@ -47,7 +46,7 @@ public class Cases {
         int træningsType = scannerFunc.getUserInteger("Trænings type:\n1. Senior\n2. Junior", 2, 1);
         int træningsForm = scannerFunc.getUserInteger("Trænings form:\n1. Konkurrence\n2. Motion", 2, 1);
 
-        scannerFunc.getDBT().insert(dato, checkBoolFrom1Or2(træningsType), checkBoolFrom1Or2(træningsForm));
+        scannerFunc.getDBT().insert(dato, scannerFunc.checkBoolFrom1Or2(træningsType), scannerFunc.checkBoolFrom1Or2(træningsForm));
 
         if (træningsForm == 1) {
             int opretRes = scannerFunc.getUserInteger("Ønskes der at opret resultater for denne træning?\n1. Ja\n2. Nej", 2, 1);

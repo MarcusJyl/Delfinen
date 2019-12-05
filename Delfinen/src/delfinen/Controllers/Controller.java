@@ -48,22 +48,19 @@ public class Controller {
                     break;
                 case 9:
                     ArrayList<Integer> medlemsIder = scanner.getDBH().getMedlemmer(1);
+                    int i = 0;
                     for (Integer id : medlemsIder) {
+                        i++;
                         Medlem medlem = DBMedlemsOplysninger.medlemsOplysninger(id);
-                        System.out.println(medlem);
+                        System.out.println(i + ". " + medlem);
                     }
                     break;
 
             }
-            System.out.println("************************************************\nSkriv hvad som helst for at gå til hoved menuen igen");
+            System.out.println("************************************************\nSkriv hvad som helst for at gå til hoved menuen igen:");
         }
     }
 
-    public static boolean checkBoolFrom1Or2(int tal) {
-        if (tal == 1) {
-            return true;
-        }
-        return false;
-    }
+
 
 }

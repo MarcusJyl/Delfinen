@@ -184,4 +184,11 @@ public class ScannerFunc {
         int nummer = getUserInteger("Skrive nummer på svømmer", j, 1);
         return medlemmer.get(nummer - 1).getId();
     }
+
+    public static boolean checkBoolFrom1Or2(int tal) {
+        if (tal == 1) {
+            return true;
+        }
+        return false;
+    }
 }
