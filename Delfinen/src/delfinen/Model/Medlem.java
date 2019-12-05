@@ -37,9 +37,9 @@ public class Medlem {
     @Override
     public String toString() {
         if(this.status == null){
-            return "Navn=" + navn + ", f\u00f8dselsdato=" + fødselsdato + ", holdtype=" + holdtype;
+            return "Navn: " + navn + ", f\u00f8dselsdato: " + fødselsdato + ", holdtype: " + holdtype;
         } 
-        return "Navn=" + navn + ", f\u00f8dselsdato=" + fødselsdato + ", holdtype=" + holdtype + ", status=" + status + ", kontingent=" + kontingent;
+        return "Navn: " + navn + ", f\u00f8dselsdato: " + fødselsdato + ", holdtype: " + holdtype + ", status: " + status + ", kontingent: " + kontingent;
     }
 
     
