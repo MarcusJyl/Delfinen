@@ -30,10 +30,10 @@ public class Cases {
     }
 
     public void case2() {
-        String navn2 = scannerFunc.getUserString("Indtast medlems navn:");
-        String fødselsdato2 = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
-
-        System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(navn2, fødselsdato2) + ",-");
+        int id = scannerFunc.getMedlemSomStarterMed();
+        if (id != -1) {
+            System.out.println("Kontingentet er på " + DBMedlem.getMedlemsKontingent(id) + ",-");
+        }
     }
 
     public void case3() {
@@ -102,9 +102,11 @@ public class Cases {
         String dici = "";
         while (!dici.contains("lukke")) {
             dici = vælgDiciplin(list);
-            String[][] arr = scannerFunc.getDBR().select(dici);
-            for (int i = 0; i < arr.length; i++) {
-                System.out.println(" Medlemmets navn: " + arr[i][1] + "| Tid: " + arr[i][0]);
+            if (!dici.contains("lukke")) {
+                String[][] arr = scannerFunc.getDBR().select(dici);
+                for (int i = 0; i < arr.length; i++) {
+                    System.out.println(" Medlemmets navn: " + arr[i][1] + "| Tid: " + arr[i][0]);
+                }
             }
         }
     }
@@ -116,24 +118,26 @@ public class Cases {
         }
     }
 
-    public String case6() {
+    public void case6() {
         String status = "";
-        String navn = scannerFunc.getUserString("Indtast medlems navn:");
-        String fødselsdato = scannerFunc.getFøds("Indtast medlems fødselsdato i følgende format: dd-mm-yyyy");
-        if (DBBetalingStatusSpeci.getMedlemsKontingent(navn, fødselsdato)) {
-            status = " er ikke i restance";
-        } else {
-            status = " er i restance";
+        int id = scannerFunc.getMedlemSomStarterMed();
+        if (id != -1) {
+            if (DBBetalingStatusSpeci.getMedlemsKontingent(id)) {
+                status = " er ikke i restance";
+            } else {
+                status = " er i restance";
+            }
+            System.out.println("Medlemet " + status);
         }
-        return navn + status;
     }
 
     public void case7() {
         int medlemsId = scannerFunc.getMedlemSomStarterMed();
-        
-        Medlem item = DBMedlemsOplysninger.medlemsOplysninger(medlemsId);
-        System.out.println(item);
-        //System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
+        if (medlemsId != -1) {
+            Medlem item = DBMedlemsOplysninger.medlemsOplysninger(medlemsId);
+            System.out.println(item);
+            //System.out.println(item.getHoldtype() + " " + item.getKontingent() + " " + item.getKontingentStatus() + " " + item.getStatus1());
+        }
     }
 
     public void case8() {
@@ -147,7 +151,9 @@ public class Cases {
         int antalMedlemmerPåHoldet = scannerFunc.getUserInteger("Hvor mange svømmer er der på holdet", 10, 2);
         for (int i = 0; i < antalMedlemmerPåHoldet; i++) {
             int medlemsId = scannerFunc.getMedlemSomStarterMed();
-            scannerFunc.getDBH().insert(holdId, medlemsId, stævneId);
+            if (medlemsId != -1) {
+                scannerFunc.getDBH().insert(holdId, medlemsId, stævneId);
+            }
         }
     }
 

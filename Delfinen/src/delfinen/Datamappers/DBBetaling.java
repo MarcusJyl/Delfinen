@@ -22,7 +22,7 @@ public class DBBetaling extends DBCalls {
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "SELECT medlems_id, medlems_navn, medlems_kontingent_status FROM delfinen.medlemmer;";
+            String query = "SELECT medlems_id, medlems_navn, medlems_kontingent_status FROM delfinen.medlemmer where medlems_kontingent_status = false;";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 

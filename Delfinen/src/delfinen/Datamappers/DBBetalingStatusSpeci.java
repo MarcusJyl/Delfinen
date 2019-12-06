@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class DBBetalingStatusSpeci {
 
-        public static boolean getMedlemsKontingent(String navn, String dato) {
+        public static boolean getMedlemsKontingent(int id) {
         boolean retVal = false;
         Connection MyConnector = null;
         Statement statement = null;
@@ -16,7 +16,7 @@ public class DBBetalingStatusSpeci {
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "select medlems_kontingent_status from medlemmer where medlems_navn = '" + navn + "' and medlems_fødselsdato = '" + dato + "';";
+            String query = "select medlems_kontingent_status from medlemmer where medlems_id = '" + id + "';";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 

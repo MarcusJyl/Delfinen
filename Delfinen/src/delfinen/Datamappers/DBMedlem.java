@@ -55,7 +55,7 @@ public class DBMedlem extends DBCalls {
         }
     }
 
-    public static double getMedlemsKontingent(String navn, String dato) {
+    public static double getMedlemsKontingent(int id) {
         double retVal = 0;
         Connection MyConnector = null;
         Statement statement = null;
@@ -63,7 +63,7 @@ public class DBMedlem extends DBCalls {
 
         try {
             MyConnector = DBConnector.getConnector();
-            String query = "select medlems_kontingent from medlemmer where medlems_navn = '" + navn + "' and medlems_fødselsdato = '" + dato + "';";
+            String query = "select medlems_kontingent from medlemmer where medlems_id = " + id + ";";
             statement = MyConnector.createStatement();
             resultSet = statement.executeQuery(query);
 

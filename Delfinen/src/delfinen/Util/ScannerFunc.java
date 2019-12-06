@@ -173,7 +173,7 @@ public class ScannerFunc {
     }
 
     public int getMedlemSomStarterMed() {
-        String navn = getUserString("Skriv svømmers navn:");
+        String navn = getUserString("Skriv starten af svømmers navn:");
 
         ArrayList<Medlem> medlemmer = getDBM().getAlleMedlemmerDerStarterMed(navn);
         int j = 0;
@@ -181,7 +181,12 @@ public class ScannerFunc {
             j++;
             System.out.println(j + ". " + "Navn: " + medlem.getNavn() + "| Fødselsdag: " + medlem.getFødselsdato());
         }
+        if (medlemmer.size() == 0) {
+            System.out.println("Ingen medlemmer med denne id");
+            return -1;
+        }
         int nummer = getUserInteger("Skrive nummer på svømmer", j, 1);
+
         return medlemmer.get(nummer - 1).getId();
     }
 
